@@ -34,6 +34,7 @@ function  imageClick(event){
     divRef.addEventListener("keydown", (event) => {
         if (event.code === "Escape"){
             instance.close()
+            divRef.removeEventListener
         }
     }
     )

@@ -6,15 +6,12 @@ console.log(galleryItems);
 const divRef = document.querySelector(".gallery");
 const addGallary = galleryCreate(galleryItems);
 divRef.addEventListener("click", imageClick);
-divRef.insertAdjacentHTML("afterbegin", addGallary);
+divRef.insertAdjacentHTML("beforeend", addGallary);
 
 function galleryCreate(items) {
   return items
     .map(
-      ({
-        preview,
-        original,
-        description,
+      ({ preview, original, description,
       }) => `<a class="gallery__item" href="${original}">
     <img class="gallery__image" src="${preview}" alt="${description}" />
   </a>`
@@ -24,16 +21,16 @@ function galleryCreate(items) {
 
 function imageClick(event) {
   event.preventDefault();
-  let lightbox = new SimpleLightbox(".gallery a", {
-    captionData: "alt",
-    captionDelay: 250,
+  const lightbox = new SimpleLightbox(".gallery a", {
+    captionsData: "alt",
+    captionsDelay: 250,
   });
   if (event.target.nodeName !== "IMG") {
     return;
   }
-  lightbox.open();
-}
 
-function blockStandartAction(event) {
-  event.preventDefault();
 }
+lightbox.open();
+
+
+
